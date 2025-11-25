@@ -23,7 +23,8 @@ function getFromCache<T>(key: string): T | null {
       return null
     }
     return data
-  } catch {
+  } catch (error) {
+    console.warn('Cache read failed:', error)
     return null
   }
 }
@@ -35,8 +36,8 @@ function saveToCache<T>(key: string, data: T): void {
       timestamp: Date.now(),
     }
     localStorage.setItem(key, JSON.stringify(cacheData))
-  } catch {
-    // localStorage might be full or unavailable
+  } catch (error) {
+    console.warn('Cache write failed:', error)
   }
 }
 

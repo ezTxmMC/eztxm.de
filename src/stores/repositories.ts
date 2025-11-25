@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import type { RepositoryFilters, SortOption } from '@/types/github'
+import type { RepositoryFilters, SortOption, FilterLanguage } from '@/types/github'
 import { useGitHub } from '@/composables/useGitHub'
 
 export const useRepositoriesStore = defineStore('repositories', () => {
@@ -51,7 +51,7 @@ export const useRepositoriesStore = defineStore('repositories', () => {
     return repos
   })
 
-  function setLanguageFilter(language: string | null): void {
+  function setLanguageFilter(language: FilterLanguage): void {
     filters.value.language = language
   }
 

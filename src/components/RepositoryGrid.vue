@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 import { useRepositoriesStore } from '@/stores/repositories'
+import type { SortOption } from '@/types/github'
 import RepositoryCard from './RepositoryCard.vue'
 
 const props = withDefaults(
@@ -23,6 +24,19 @@ const displayedRepositories = computed(() => {
   return store.filteredRepositories
 })
 
+function handleLanguageChange(event: Event): void {
+  const target = event.target as HTMLSelectElement | null
+  store.setLanguageFilter(target?.value || null)
+}
+
+function handleSortChange(event: Event): void {
+  const target = event.target as HTMLSelectElement | null
+  const value = target?.value
+  if (value === 'stars' || value === 'updated' || value === 'name') {
+    store.setSortBy(value as SortOption)
+  }
+}
+
 onMounted(() => {
   store.loadRepositories()
 })
@@ -38,11 +52,7 @@ onMounted(() => {
           id="language-filter"
           class="filter-select"
           :value="store.filters.language || ''"
-          @change="
-            store.setLanguageFilter(
-              ($event.target as HTMLSelectElement).value || null,
-            )
-          "
+          @change="handleLanguageChange"
         >
           <option value="">All Languages</option>
           <option v-for="lang in store.availableLanguages" :key="lang" :value="lang">
@@ -57,11 +67,7 @@ onMounted(() => {
           id="sort-filter"
           class="filter-select"
           :value="store.filters.sortBy"
-          @change="
-            store.setSortBy(
-              ($event.target as HTMLSelectElement).value as 'stars' | 'updated' | 'name',
-            )
-          "
+          @change="handleSortChange"
         >
           <option value="updated">Recently Updated</option>
           <option value="stars">Most Stars</option>
