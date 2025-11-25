@@ -11,7 +11,7 @@ import { RouterLink } from 'vue-router'
       </div>
 
       <h1 class="hero-title fade-in">
-        Hi, I'm <span class="gradient-text">ezTxm</span>
+        Hi, I'm <span class="gradient-text">ezTxmMC</span>
       </h1>
 
       <p class="hero-description fade-in">

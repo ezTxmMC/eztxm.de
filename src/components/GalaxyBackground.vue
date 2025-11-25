@@ -75,6 +75,11 @@ onUnmounted(() => {
   z-index: -1;
   overflow: hidden;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  transition: background var(--transition-normal);
+}
+
+:global([data-theme='dark']) .galaxy-background {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }
 
 .gradient-overlay {
@@ -89,6 +94,16 @@ onUnmounted(() => {
     radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
 }
 
+:global([data-theme='dark']) .gradient-overlay {
+  background: radial-gradient(
+      ellipse at 20% 20%,
+      rgba(139, 92, 246, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+}
+
 .stars-container {
   position: absolute;
   inset: 0;
@@ -100,6 +115,10 @@ onUnmounted(() => {
   border-radius: 50%;
   box-shadow: 0 0 6px rgba(139, 92, 246, 0.5);
   transition: opacity 0.5s ease;
+}
+
+:global([data-theme='dark']) .star {
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
 }
 
 .nebula {
@@ -116,6 +135,15 @@ onUnmounted(() => {
   );
   filter: blur(60px);
   animation: float 20s ease-in-out infinite;
+}
+
+:global([data-theme='dark']) .nebula {
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.3) 0%,
+    rgba(99, 102, 241, 0.2) 30%,
+    transparent 70%
+  );
 }
 
 @keyframes float {

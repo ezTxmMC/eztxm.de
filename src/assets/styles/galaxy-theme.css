@@ -66,6 +66,30 @@
   --lang-default: #8b5cf6;
 }
 
+/* Dark Mode */
+[data-theme='dark'] {
+  /* Base Colors */
+  --galaxy-white: #0f172a;
+  --galaxy-off-white: #1e293b;
+  --galaxy-light-gray: #334155;
+
+  /* Text Colors */
+  --galaxy-text-primary: #f1f5f9;
+  --galaxy-text-secondary: #cbd5e1;
+  --galaxy-text-muted: #94a3b8;
+
+  /* Glassmorphism */
+  --glass-background: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(71, 85, 105, 0.5);
+  --glass-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(139, 92, 246, 0.5);
+}
+
 /* Reset and Base Styles */
 *,
 *::before,

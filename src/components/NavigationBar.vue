@@ -5,6 +5,7 @@ import { RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
+const isDarkMode = ref(false)
 
 function handleScroll() {
   isScrolled.value = window.scrollY > 50
@@ -18,8 +19,25 @@ function closeMobileMenu() {
   isMobileMenuOpen.value = false
 }
 
+function toggleDarkMode() {
+  isDarkMode.value = !isDarkMode.value
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.setItem('theme', 'dark')
+  } else {
+    document.documentElement.removeAttribute('data-theme')
+    localStorage.setItem('theme', 'light')
+  }
+}
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme === 'dark') {
+    isDarkMode.value = true
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
 })
 
 onUnmounted(() => {
@@ -31,7 +49,7 @@ onUnmounted(() => {
   <nav class="navbar" :class="{ scrolled: isScrolled }">
     <div class="nav-container">
       <RouterLink to="/" class="nav-logo" @click="closeMobileMenu">
-        <span class="logo-text">ezTxm</span>
+        <span class="logo-text">ezTxmMC</span>
       </RouterLink>
 
       <button
@@ -68,6 +86,56 @@ onUnmounted(() => {
         >
           About
         </RouterLink>
+        <RouterLink
+          to="/imprint"
+          class="nav-link"
+          :class="{ active: route.path === '/imprint' }"
+          @click="closeMobileMenu"
+        >
+          Imprint
+        </RouterLink>
+        <button
+          class="theme-toggle"
+          @click="toggleDarkMode"
+          :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          <svg
+            v-if="isDarkMode"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+          <svg
+            v-else
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
         <a
           href="https://github.com/ezTxmMC"
           target="_blank"
@@ -202,6 +270,31 @@ onUnmounted(() => {
 
 .github-link::after {
   display: none;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0.5rem;
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--galaxy-text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--galaxy-violet);
+  color: white;
+  border-color: var(--galaxy-violet);
+  transform: translateY(-2px);
 }
 
 .mobile-toggle {
