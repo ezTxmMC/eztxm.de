@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/styles/galaxy-theme.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
