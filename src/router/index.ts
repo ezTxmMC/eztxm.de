@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'imprint',
       component: () => import('../views/ImprintView.vue'),
     },
+    {
+      path: '/org/:org',
+      name: 'organization',
+      component: () => import('../views/OrganizationView.vue'),
+    },
   ],
   scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {

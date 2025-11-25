@@ -37,6 +37,26 @@ export interface GitHubOrganization {
   description: string | null
 }
 
+export interface GitHubOrganizationDetails {
+  login: string
+  id: number
+  avatar_url: string
+  description: string | null
+  name: string | null
+  blog: string | null
+  location: string | null
+  html_url: string
+  public_repos: number
+  public_members_url: string
+}
+
+export interface GitHubMember {
+  login: string
+  id: number
+  avatar_url: string
+  html_url: string
+}
+
 export type SortOption = 'stars' | 'updated' | 'name'
 export type FilterLanguage = string | null
 
