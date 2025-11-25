@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { useGitHub } from '@/composables/useGitHub'
 
-const { user, fetchUser } = useGitHub()
+const { user, organizations, fetchUser, fetchOrganizations } = useGitHub()
 
 const skills = [
   { name: 'TypeScript', category: 'language' },
@@ -21,6 +21,7 @@ const skills = [
 
 onMounted(() => {
   fetchUser()
+  fetchOrganizations()
 })
 </script>
 
@@ -230,6 +231,48 @@ onMounted(() => {
           </div>
         </div>
       </div>
+
+      <!-- Organizations Section -->
+      <div v-if="organizations.length > 0" class="organizations-section fade-in">
+        <h3>Organizations</h3>
+        <p class="organizations-subtitle">Member of these GitHub organizations</p>
+        <div class="organizations-grid">
+          <a
+            v-for="org in organizations"
+            :key="org.id"
+            :href="`https://github.com/${org.login}`"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="org-card glass-card"
+          >
+            <img :src="org.avatar_url" :alt="org.login" class="org-avatar" />
+            <div class="org-info">
+              <h4>{{ org.login }}</h4>
+              <p v-if="org.description" class="org-description">
+                {{ org.description }}
+              </p>
+              <span class="org-link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                View on GitHub
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -424,5 +467,94 @@ onMounted(() => {
   .stats-row {
     gap: 1.5rem;
   }
+
+  .organizations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Organizations Section */
+.organizations-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.organizations-section h3 {
+  margin-bottom: 0.5rem;
+}
+
+.organizations-subtitle {
+  font-size: 0.95rem;
+  color: var(--galaxy-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.organizations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.org-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  text-decoration: none;
+  text-align: left;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.org-card:hover {
+  transform: translateY(-4px);
+}
+
+.org-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  border: 2px solid var(--glass-border);
+}
+
+.org-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.org-info h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--galaxy-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.org-description {
+  font-size: 0.875rem;
+  color: var(--galaxy-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.org-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8rem;
+  color: var(--galaxy-violet);
+  font-weight: 500;
+}
+
+.org-link svg {
+  width: 14px;
+  height: 14px;
 }
 </style>

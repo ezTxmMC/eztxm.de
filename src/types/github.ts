@@ -28,6 +28,15 @@ export interface GitHubUser {
   following: number
 }
 
+export interface GitHubOrganization {
+  login: string
+  id: number
+  url: string
+  repos_url: string
+  avatar_url: string
+  description: string | null
+}
+
 export type SortOption = 'stars' | 'updated' | 'name'
 export type FilterLanguage = string | null
 

@@ -1,10 +1,11 @@
 import { ref } from 'vue'
-import type { GitHubRepository, GitHubUser } from '@/types/github'
+import type { GitHubRepository, GitHubUser, GitHubOrganization } from '@/types/github'
 
 const GITHUB_API_URL = 'https://api.github.com'
 const GITHUB_USERNAME = 'ezTxmMC'
 const CACHE_KEY = 'github_repos_cache'
 const USER_CACHE_KEY = 'github_user_cache'
+const ORGS_CACHE_KEY = 'github_orgs_cache'
 const CACHE_DURATION = 1000 * 60 * 30 // 30 minutes
 
 interface CacheData<T> {
@@ -44,6 +45,7 @@ function saveToCache<T>(key: string, data: T): void {
 export function useGitHub() {
   const repositories = ref<GitHubRepository[]>([])
   const user = ref<GitHubUser | null>(null)
+  const organizations = ref<GitHubOrganization[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -100,18 +102,44 @@ export function useGitHub() {
     }
   }
 
+  async function fetchOrganizations(): Promise<void> {
+    // Check cache first
+    const cachedOrgs = getFromCache<GitHubOrganization[]>(ORGS_CACHE_KEY)
+    if (cachedOrgs) {
+      organizations.value = cachedOrgs
+      return
+    }
+
+    try {
+      const response = await fetch(`${GITHUB_API_URL}/users/${GITHUB_USERNAME}/orgs`)
+
+      if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status}`)
+      }
+
+      const data: GitHubOrganization[] = await response.json()
+      organizations.value = data
+      saveToCache(ORGS_CACHE_KEY, data)
+    } catch (err) {
+      console.error('Failed to fetch organizations:', err)
+    }
+  }
+
   function clearCache(): void {
     localStorage.removeItem(CACHE_KEY)
     localStorage.removeItem(USER_CACHE_KEY)
+    localStorage.removeItem(ORGS_CACHE_KEY)
   }
 
   return {
     repositories,
     user,
+    organizations,
     loading,
     error,
     fetchRepositories,
     fetchUser,
+    fetchOrganizations,
     clearCache,
   }
 }
