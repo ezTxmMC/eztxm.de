@@ -1,0 +1,395 @@
+/* White Galaxy Theme - Color Variables */
+:root {
+  /* Base Colors */
+  --galaxy-white: #ffffff;
+  --galaxy-off-white: #f8fafc;
+  --galaxy-light-gray: #f1f5f9;
+
+  /* Galaxy Accent Colors */
+  --galaxy-violet: #8b5cf6;
+  --galaxy-purple: #a855f7;
+  --galaxy-blue: #3b82f6;
+  --galaxy-cyan: #06b6d4;
+  --galaxy-pink: #ec4899;
+  --galaxy-indigo: #6366f1;
+
+  /* Gradient Colors */
+  --galaxy-gradient-start: #8b5cf6;
+  --galaxy-gradient-mid: #6366f1;
+  --galaxy-gradient-end: #3b82f6;
+
+  /* Text Colors */
+  --galaxy-text-primary: #1e293b;
+  --galaxy-text-secondary: #64748b;
+  --galaxy-text-muted: #94a3b8;
+
+  /* Glassmorphism */
+  --glass-background: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+  --glass-blur: blur(16px);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Spacing */
+  --section-padding: 5rem 1.5rem;
+  --container-max-width: 1200px;
+
+  /* Language Badge Colors */
+  --lang-javascript: #f7df1e;
+  --lang-typescript: #3178c6;
+  --lang-python: #3776ab;
+  --lang-java: #ed8b00;
+  --lang-kotlin: #7f52ff;
+  --lang-go: #00add8;
+  --lang-rust: #dea584;
+  --lang-vue: #42b883;
+  --lang-html: #e34f26;
+  --lang-css: #1572b6;
+  --lang-shell: #89e051;
+  --lang-default: #8b5cf6;
+}
+
+/* Dark Mode */
+[data-theme='dark'] {
+  /* Base Colors */
+  --galaxy-white: #0f172a;
+  --galaxy-off-white: #1e293b;
+  --galaxy-light-gray: #334155;
+
+  /* Text Colors */
+  --galaxy-text-primary: #f1f5f9;
+  --galaxy-text-secondary: #cbd5e1;
+  --galaxy-text-muted: #94a3b8;
+
+  /* Glassmorphism */
+  --glass-background: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(71, 85, 105, 0.5);
+  --glass-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(139, 92, 246, 0.5);
+}
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--galaxy-text-primary);
+  background: var(--galaxy-off-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--galaxy-text-primary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+p {
+  color: var(--galaxy-text-secondary);
+}
+
+a {
+  color: var(--galaxy-violet);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--galaxy-purple);
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--glass-shadow),
+    var(--shadow-glow);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--galaxy-gradient-start),
+    var(--galaxy-gradient-mid),
+    var(--galaxy-gradient-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradient Button */
+.gradient-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--galaxy-gradient-start),
+    var(--galaxy-gradient-end)
+  );
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.gradient-button:active {
+  transform: translateY(0);
+}
+
+/* Outline Button */
+.outline-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--galaxy-violet);
+  background: transparent;
+  border: 2px solid var(--galaxy-violet);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.outline-button:hover {
+  background: var(--galaxy-violet);
+  color: white;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+}
+
+/* Language Color Helper */
+.lang-badge {
+  color: white;
+}
+
+.lang-badge.javascript {
+  background: var(--lang-javascript);
+  color: #1e293b;
+}
+
+.lang-badge.typescript {
+  background: var(--lang-typescript);
+}
+
+.lang-badge.python {
+  background: var(--lang-python);
+}
+
+.lang-badge.java {
+  background: var(--lang-java);
+}
+
+.lang-badge.kotlin {
+  background: var(--lang-kotlin);
+}
+
+.lang-badge.go {
+  background: var(--lang-go);
+}
+
+.lang-badge.rust {
+  background: var(--lang-rust);
+}
+
+.lang-badge.vue {
+  background: var(--lang-vue);
+}
+
+.lang-badge.html {
+  background: var(--lang-html);
+}
+
+.lang-badge.css {
+  background: var(--lang-css);
+}
+
+.lang-badge.shell {
+  background: var(--lang-shell);
+  color: #1e293b;
+}
+
+.lang-badge.default {
+  background: var(--lang-default);
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--galaxy-light-gray);
+  border-top-color: var(--galaxy-violet);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger Animation for Children */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.stagger-children > *:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.stagger-children > *:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+}
