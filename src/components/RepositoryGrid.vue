@@ -76,14 +76,16 @@ onMounted(() => {
       </div>
 
       <div class="filter-group checkbox-group">
-        <label class="checkbox-label">
+        <label class="switch">
           <input
             type="checkbox"
             :checked="store.filters.hideForked"
             @change="store.toggleHideForked()"
+            aria-label="Hide forked repositories"
           />
-          <span>Hide Forks</span>
+          <span class="slider round"></span>
         </label>
+        <span class="toggle-text">Hide Forks</span>
       </div>
     </div>
 
@@ -112,16 +114,11 @@ onMounted(() => {
       </svg>
       <h3>Failed to load repositories</h3>
       <p>{{ store.error }}</p>
-      <button class="gradient-button" @click="store.loadRepositories()">
-        Try Again
-      </button>
+      <button class="gradient-button" @click="store.loadRepositories()">Try Again</button>
     </div>
 
     <!-- Empty State -->
-    <div
-      v-else-if="displayedRepositories.length === 0"
-      class="empty-state glass-card"
-    >
+    <div v-else-if="displayedRepositories.length === 0" class="empty-state glass-card">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="48"
@@ -144,11 +141,7 @@ onMounted(() => {
 
     <!-- Repository Grid -->
     <div v-else class="repository-grid stagger-children">
-      <RepositoryCard
-        v-for="repo in displayedRepositories"
-        :key="repo.id"
-        :repository="repo"
-      />
+      <RepositoryCard v-for="repo in displayedRepositories" :key="repo.id" :repository="repo" />
     </div>
   </div>
 </template>

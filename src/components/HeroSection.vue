@@ -5,18 +5,19 @@ import { RouterLink } from 'vue-router'
 <template>
   <section class="hero">
     <div class="hero-content">
+      <div class="hero-logo fade-in" aria-hidden="true">
+        <img src="/logo.png" alt="ezTxmMC Logo" />
+      </div>
       <div class="hero-badge fade-in">
         <span class="badge-dot"></span>
         Developer & Creator
       </div>
 
-      <h1 class="hero-title fade-in">
-        Hi, I'm <span class="gradient-text">ezTxmMC</span>
-      </h1>
+      <h1 class="hero-title fade-in">Hi, I'm <span class="gradient-text">ezTxmMC</span></h1>
 
       <p class="hero-description fade-in">
-        Passionate about building modern applications and exploring new technologies.
-        I enjoy working with TypeScript, Vue.js, Kotlin, and more.
+        Passionate about building modern applications and exploring new technologies. I enjoy
+        working with TypeScript, Vue.js, Kotlin, and more.
       </p>
 
       <div class="hero-buttons fade-in">
@@ -104,13 +105,31 @@ import { RouterLink } from 'vue-router'
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6rem 1.5rem 2rem;
   position: relative;
 }
 
 .hero-content {
   max-width: 800px;
   text-align: center;
+}
+
+.hero-logo {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 1.75rem;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.04);
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 30px rgba(10, 12, 30, 0.35);
+  animation-delay: 0.05s;
+}
+
+.hero-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .hero-badge {
