@@ -1,4 +1,7 @@
-import './assets/styles/galaxy-theme.css'
+import './assets/base.css'
+
+document.documentElement.setAttribute('data-theme', 'dark')
+document.documentElement.classList.add('dark')
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

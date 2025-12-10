@@ -51,6 +51,12 @@
   --section-padding: 5rem 1.5rem;
   --container-max-width: 1200px;
 
+  /* Animation Durations */
+  --anim-hover: 200ms;
+  --anim-slide: 400ms;
+  --anim-fade: 600ms;
+  --anim-bounce: 800ms;
+
   /* Language Badge Colors */
   --lang-javascript: #f7df1e;
   --lang-typescript: #3178c6;
@@ -186,9 +192,7 @@ a:hover {
 
 .glass-card:hover {
   transform: translateY(-4px);
-  box-shadow:
-    var(--glass-shadow),
-    var(--shadow-glow);
+  box-shadow: var(--glass-shadow), var(--shadow-glow);
 }
 
 /* Gradient Text */
@@ -213,11 +217,7 @@ a:hover {
   font-size: 1rem;
   font-weight: 500;
   color: white;
-  background: linear-gradient(
-    135deg,
-    var(--galaxy-gradient-start),
-    var(--galaxy-gradient-end)
-  );
+  background: linear-gradient(135deg, var(--galaxy-gradient-start), var(--galaxy-gradient-end));
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
@@ -352,8 +352,124 @@ a:hover {
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+.bounce-hover:hover {
+  animation: bounce-subtle 0.6s ease-in-out;
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
 }
 
 /* Stagger Animation for Children */

@@ -14,6 +14,11 @@ export interface GitHubRepository {
   homepage: string | null
   fork: boolean
   archived: boolean
+  owner: {
+    login: string
+    avatar_url: string
+    html_url: string
+  }
 }
 
 export interface GitHubUser {

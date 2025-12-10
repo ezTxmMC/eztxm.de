@@ -3,25 +3,62 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-logo fade-in" aria-hidden="true">
-        <img src="/logo.png" alt="ezTxmMC Logo" />
-      </div>
-      <div class="hero-badge fade-in">
-        <span class="badge-dot"></span>
-        Developer & Creator
+  <section
+    class="relative isolate overflow-hidden flex min-h-screen flex-col items-center justify-center px-4 pb-16 pt-8 text-center sm:px-6"
+  >
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="pointer-events-none absolute -left-16 top-12 h-60 w-60 rounded-full bg-linear-to-br from-indigo-500/35 via-fuchsia-500/25 to-cyan-400/25 blur-3xl animate-float-slow"
+      />
+      <div
+        class="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full bg-linear-to-br from-cyan-400/25 via-indigo-500/25 to-fuchsia-500/20 blur-3xl animate-float-slower"
+      />
+      <div
+        class="pointer-events-none absolute left-1/2 top-24 h-32 w-32 -translate-x-1/2 rounded-full border border-white/10 bg-white/5 blur-xl animate-pulse-soft"
+      />
+    </div>
+
+    <div
+      class="mx-auto flex max-w-4xl flex-col items-center gap-6 animate-fade-up"
+      style="animation-delay: 40ms"
+    >
+      <div
+        class="relative grid h-28 w-28 place-items-center rounded-3xl border border-white/10 bg-white/5 shadow-lg shadow-violet-500/15 backdrop-blur before:pointer-events-none before:absolute before:inset-0 before:rounded-3xl before:bg-linear-to-br before:from-indigo-500/15 before:via-fuchsia-500/10 before:to-cyan-400/10 before:blur-xl scale-in bounce-hover"
+        aria-hidden="true"
+      >
+        <img src="/logo.png" alt="ezTxmMC Logo" class="h-16 w-16 object-contain" />
       </div>
 
-      <h1 class="hero-title fade-in">Hi, I'm <span class="gradient-text">ezTxmMC</span></h1>
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 shadow-sm"
+        style="animation-delay: 80ms"
+      >
+        <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>
+        Developer · Creator · Builder
+      </div>
 
-      <p class="hero-description fade-in">
-        Passionate about building modern applications and exploring new technologies. I enjoy
-        working with TypeScript, Vue.js, Kotlin, and more.
+      <h1 class="text-4xl font-bold leading-tight text-white sm:text-5xl">
+        Hi, I'm
+        <span
+          class="bg-linear-to-r from-violet-400 via-indigo-400 to-blue-400 bg-clip-text text-transparent gradient-shift"
+        >
+          ezTxmMC
+        </span>
+      </h1>
+
+      <p
+        class="max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl"
+        style="animation-delay: 120ms"
+      >
+        I build fast, modern experiences across web and backend — TypeScript, Vue, React, Java, Go,
+        Docker and more. Always shipping, always learning.
       </p>
 
-      <div class="hero-buttons fade-in">
-        <RouterLink to="/projects" class="gradient-button">
+      <div class="flex flex-wrap justify-center gap-3" style="animation-delay: 160ms">
+        <RouterLink
+          to="/projects"
+          class="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-violet-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition hover:-translate-y-0.5 hover:from-violet-400 hover:to-indigo-400 hover:shadow-xl hover:shadow-violet-500/40"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -37,11 +74,12 @@ import { RouterLink } from 'vue-router'
           </svg>
           View Projects
         </RouterLink>
+
         <a
           href="https://github.com/ezTxmMC"
           target="_blank"
           rel="noopener noreferrer"
-          class="outline-button"
+          class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:-translate-y-0.5 hover:border-violet-400 hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,37 +96,75 @@ import { RouterLink } from 'vue-router'
         </a>
       </div>
 
-      <div class="hero-stats fade-in">
-        <div class="stat">
-          <span class="stat-value gradient-text">10+</span>
-          <span class="stat-label">Projects</span>
+      <div
+        class="flex flex-wrap justify-center gap-2 text-sm text-slate-200"
+        style="animation-delay: 200ms"
+      >
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10"
+        >
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Go · React · Java · Docker
+        </span>
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 20h9" />
+            <path d="M12 4h9" />
+            <path d="M14 9l-3 3 3 3" />
+            <path d="M3 12h9" />
+          </svg>
+          Shipping weekly
+        </span>
+      </div>
+
+      <div
+        class="flex items-center justify-center gap-6 text-left sm:gap-10"
+        style="animation-delay: 240ms"
+      >
+        <div class="text-center">
+          <span class="block text-2xl font-bold text-indigo-300">10+</span>
+          <span class="text-xs uppercase tracking-[0.2em] text-slate-400">Projects</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-value gradient-text">5+</span>
-          <span class="stat-label">Languages</span>
+        <div class="h-10 w-px bg-white/10"></div>
+        <div class="text-center">
+          <span class="block text-2xl font-bold text-indigo-300">5+</span>
+          <span class="text-xs uppercase tracking-[0.2em] text-slate-400">Languages</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-value gradient-text">∞</span>
-          <span class="stat-label">Ideas</span>
+        <div class="h-10 w-px bg-white/10"></div>
+        <div class="text-center">
+          <span class="block text-2xl font-bold text-indigo-300">∞</span>
+          <span class="text-xs uppercase tracking-[0.2em] text-slate-400">Ideas</span>
         </div>
       </div>
     </div>
 
-    <div class="scroll-indicator">
+    <div
+      class="absolute bottom-10 hidden flex-col items-center gap-2 text-xs text-slate-400 sm:flex"
+    >
       <span>Scroll down</span>
-      <div class="scroll-arrow">
+      <div class="flex h-8 w-8 items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="animate-bounce"
         >
           <path d="M12 5v14" />
           <path d="m19 12-7 7-7-7" />
@@ -99,179 +175,63 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style scoped>
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+@keyframes float-slow {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
-.hero-content {
-  max-width: 800px;
-  text-align: center;
+@keyframes float-slower {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(14px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
-.hero-logo {
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 1.75rem;
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.04);
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 30px rgba(10, 12, 30, 0.35);
-  animation-delay: 0.05s;
-}
-
-.hero-logo img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: var(--glass-background);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-2xl);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--galaxy-text-secondary);
-  margin-bottom: 1.5rem;
-  animation-delay: 0.1s;
-}
-
-.badge-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--galaxy-violet);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
   100% {
     opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  animation-delay: 0.2s;
-}
-
-.hero-description {
-  font-size: 1.125rem;
-  color: var(--galaxy-text-secondary);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  line-height: 1.7;
-  animation-delay: 0.3s;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  animation-delay: 0.4s;
-}
-
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  animation-delay: 0.5s;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-value {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.stat-label {
-  font-size: 0.875rem;
-  color: var(--galaxy-text-muted);
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--glass-border);
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--galaxy-text-muted);
-  font-size: 0.75rem;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
     transform: translateY(0);
   }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
   50% {
-    transform: translateY(8px);
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-.scroll-arrow svg {
-  width: 20px;
-  height: 20px;
+.animate-float-slow {
+  animation: float-slow 11s ease-in-out infinite;
 }
-
-@media (max-width: 768px) {
-  .hero {
-    padding: 5rem 1rem 2rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-stats {
-    gap: 1.5rem;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
-  }
-
-  .scroll-indicator {
-    display: none;
-  }
+.animate-float-slower {
+  animation: float-slower 15s ease-in-out infinite;
+}
+.animate-fade-up {
+  animation: fade-up 640ms ease-out forwards;
+}
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
 }
 </style>

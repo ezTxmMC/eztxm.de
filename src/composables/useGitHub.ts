@@ -12,7 +12,7 @@ const GITHUB_USERNAME = 'ezTxmMC'
 const CACHE_KEY = 'github_repos_cache'
 const USER_CACHE_KEY = 'github_user_cache'
 const ORGS_CACHE_KEY = 'github_orgs_cache'
-const CACHE_DURATION = 1000 * 60 * 30 // 30 minutes
+const CACHE_DURATION = 1000 * 60 * 30
 
 interface CacheData<T> {
   data: T
@@ -59,7 +59,6 @@ export function useGitHub() {
   const error = ref<string | null>(null)
 
   async function fetchRepositories(): Promise<void> {
-    // Check cache first
     const cachedRepos = getFromCache<GitHubRepository[]>(CACHE_KEY)
     if (cachedRepos) {
       repositories.value = cachedRepos
@@ -89,7 +88,6 @@ export function useGitHub() {
   }
 
   async function fetchUser(): Promise<void> {
-    // Check cache first
     const cachedUser = getFromCache<GitHubUser>(USER_CACHE_KEY)
     if (cachedUser) {
       user.value = cachedUser
@@ -112,7 +110,6 @@ export function useGitHub() {
   }
 
   async function fetchOrganizations(): Promise<void> {
-    // Check cache first
     const cachedOrgs = getFromCache<GitHubOrganization[]>(ORGS_CACHE_KEY)
     if (cachedOrgs) {
       organizations.value = cachedOrgs
