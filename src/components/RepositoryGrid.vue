@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useRepositoriesStore } from '@/stores/repositories'
 import type { SortOption } from '@/types/github'
 import RepositoryCard from './RepositoryCard.vue'
@@ -17,6 +17,11 @@ const props = withDefaults(
 
 const store = useRepositoriesStore()
 
+// Custom select dropdown states
+const ownerDropdownOpen = ref(false)
+const languageDropdownOpen = ref(false)
+const sortDropdownOpen = ref(false)
+
 const displayedRepositories = computed(() => {
   if (props.limit) {
     return store.filteredRepositories.slice(0, props.limit)
@@ -24,21 +29,60 @@ const displayedRepositories = computed(() => {
   return store.filteredRepositories
 })
 
-function handleLanguageChange(event: Event): void {
-  const target = event.target as HTMLSelectElement | null
-  store.setLanguageFilter(target?.value || null)
+function handleLanguageChange(lang: string | null): void {
+  store.setLanguageFilter(lang)
+  languageDropdownOpen.value = false
 }
 
-function handleSortChange(event: Event): void {
-  const target = event.target as HTMLSelectElement | null
-  const value = target?.value
-  if (value === 'stars' || value === 'updated' || value === 'name') {
-    store.setSortBy(value as SortOption)
-  }
+function handleOwnerChange(owner: string | null): void {
+  store.setOwnerFilter(owner)
+  ownerDropdownOpen.value = false
+}
+
+function handleSortChange(sort: SortOption): void {
+  store.setSortBy(sort)
+  sortDropdownOpen.value = false
+}
+
+function closeAllDropdowns(): void {
+  ownerDropdownOpen.value = false
+  languageDropdownOpen.value = false
+  sortDropdownOpen.value = false
+}
+
+function toggleOwnerDropdown(): void {
+  ownerDropdownOpen.value = !ownerDropdownOpen.value
+  languageDropdownOpen.value = false
+  sortDropdownOpen.value = false
+}
+
+function toggleLanguageDropdown(): void {
+  languageDropdownOpen.value = !languageDropdownOpen.value
+  ownerDropdownOpen.value = false
+  sortDropdownOpen.value = false
+}
+
+function toggleSortDropdown(): void {
+  sortDropdownOpen.value = !sortDropdownOpen.value
+  ownerDropdownOpen.value = false
+  languageDropdownOpen.value = false
+}
+
+const sortLabels: Record<SortOption, string> = {
+  updated: 'Recently Updated',
+  stars: 'Most Stars',
+  name: 'Name',
 }
 
 onMounted(() => {
   store.loadRepositories()
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement
+    if (!target.closest('.custom-select')) {
+      closeAllDropdowns()
+    }
+  })
 })
 </script>
 
@@ -48,45 +92,238 @@ onMounted(() => {
       v-if="showFilters"
       class="flex flex-wrap items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-slate-200 shadow-lg shadow-black/30"
     >
-      <label class="flex items-center gap-2 text-sm font-medium text-slate-300">
-        <span>Language</span>
-        <select
-          id="language-filter"
-          class="min-w-[140px] rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 shadow-inner transition-all duration-300 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400/20 hover:border-violet-400/50"
-          :value="store.filters.language || ''"
-          @change="handleLanguageChange"
+      <!-- Owner Custom Select -->
+      <div class="custom-select relative">
+        <label class="mb-1 block text-xs font-medium text-slate-400">Owner</label>
+        <button
+          type="button"
+          class="flex min-w-[140px] items-center justify-between gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 shadow-inner transition-all duration-300 hover:border-violet-400/50"
+          :class="{ 'border-violet-400 ring-2 ring-violet-400/20': ownerDropdownOpen }"
+          @click.stop="toggleOwnerDropdown"
         >
-          <option value="">All Languages</option>
-          <option v-for="lang in store.availableLanguages" :key="lang" :value="lang">
-            {{ lang }}
-          </option>
-        </select>
-      </label>
-
-      <label class="flex items-center gap-2 text-sm font-medium text-slate-300">
-        <span>Sort</span>
-        <select
-          id="sort-filter"
-          class="min-w-[150px] rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 shadow-inner transition-all duration-300 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400/20 hover:border-violet-400/50"
-          :value="store.filters.sortBy"
-          @change="handleSortChange"
+          <span>{{ store.filters.owner || 'All Owners' }}</span>
+          <svg
+            class="h-4 w-4 text-slate-400 transition-transform duration-200"
+            :class="{ 'rotate-180': ownerDropdownOpen }"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="opacity-0 -translate-y-2"
+          enter-to-class="opacity-100 translate-y-0"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="opacity-100 translate-y-0"
+          leave-to-class="opacity-0 -translate-y-2"
         >
-          <option value="updated">Recently Updated</option>
-          <option value="stars">Most Stars</option>
-          <option value="name">Name</option>
-        </select>
-      </label>
+          <div
+            v-if="ownerDropdownOpen"
+            class="absolute left-0 top-full z-50 mt-2 max-h-60 w-full min-w-40 overflow-auto rounded-xl border border-white/10 bg-slate-900/95 py-1 shadow-xl backdrop-blur-xl"
+          >
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-violet-500/20"
+              :class="{ 'bg-violet-500/10 text-violet-300': !store.filters.owner }"
+              @click="handleOwnerChange(null)"
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="!store.filters.owner ? 'bg-violet-400' : 'bg-transparent'"
+              ></span>
+              All Owners
+            </button>
+            <button
+              v-for="owner in store.availableOwners"
+              :key="owner"
+              type="button"
+              class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-violet-500/20"
+              :class="{ 'bg-violet-500/10 text-violet-300': store.filters.owner === owner }"
+              @click="handleOwnerChange(owner)"
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="store.filters.owner === owner ? 'bg-violet-400' : 'bg-transparent'"
+              ></span>
+              {{ owner }}
+            </button>
+          </div>
+        </Transition>
+      </div>
 
-      <label class="ml-auto inline-flex items-center gap-2 text-sm text-slate-300">
-        <input
-          type="checkbox"
-          class="h-4 w-4 rounded border-white/20 bg-slate-900/80 text-violet-500 focus:ring-violet-500"
-          :checked="store.filters.hideForked"
-          @change="store.toggleHideForked()"
-          aria-label="Hide forked repositories"
-        />
-        <span>Hide Forks</span>
-      </label>
+      <!-- Language Custom Select -->
+      <div class="custom-select relative">
+        <label class="mb-1 block text-xs font-medium text-slate-400">Language</label>
+        <button
+          type="button"
+          class="flex min-w-[140px] items-center justify-between gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 shadow-inner transition-all duration-300 hover:border-violet-400/50"
+          :class="{ 'border-violet-400 ring-2 ring-violet-400/20': languageDropdownOpen }"
+          @click.stop="toggleLanguageDropdown"
+        >
+          <span>{{ store.filters.language || 'All Languages' }}</span>
+          <svg
+            class="h-4 w-4 text-slate-400 transition-transform duration-200"
+            :class="{ 'rotate-180': languageDropdownOpen }"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="opacity-0 -translate-y-2"
+          enter-to-class="opacity-100 translate-y-0"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="opacity-100 translate-y-0"
+          leave-to-class="opacity-0 -translate-y-2"
+        >
+          <div
+            v-if="languageDropdownOpen"
+            class="absolute left-0 top-full z-50 mt-2 max-h-60 w-full min-w-40 overflow-auto rounded-xl border border-white/10 bg-slate-900/95 py-1 shadow-xl backdrop-blur-xl"
+          >
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-violet-500/20"
+              :class="{ 'bg-violet-500/10 text-violet-300': !store.filters.language }"
+              @click="handleLanguageChange(null)"
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="!store.filters.language ? 'bg-violet-400' : 'bg-transparent'"
+              ></span>
+              All Languages
+            </button>
+            <button
+              v-for="lang in store.availableLanguages"
+              :key="lang"
+              type="button"
+              class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-violet-500/20"
+              :class="{ 'bg-violet-500/10 text-violet-300': store.filters.language === lang }"
+              @click="handleLanguageChange(lang)"
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="store.filters.language === lang ? 'bg-violet-400' : 'bg-transparent'"
+              ></span>
+              {{ lang }}
+            </button>
+          </div>
+        </Transition>
+      </div>
+
+      <!-- Sort Custom Select -->
+      <div class="custom-select relative">
+        <label class="mb-1 block text-xs font-medium text-slate-400">Sort</label>
+        <button
+          type="button"
+          class="flex min-w-[150px] items-center justify-between gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-100 shadow-inner transition-all duration-300 hover:border-violet-400/50"
+          :class="{ 'border-violet-400 ring-2 ring-violet-400/20': sortDropdownOpen }"
+          @click.stop="toggleSortDropdown"
+        >
+          <span>{{ sortLabels[store.filters.sortBy] }}</span>
+          <svg
+            class="h-4 w-4 text-slate-400 transition-transform duration-200"
+            :class="{ 'rotate-180': sortDropdownOpen }"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="opacity-0 -translate-y-2"
+          enter-to-class="opacity-100 translate-y-0"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="opacity-100 translate-y-0"
+          leave-to-class="opacity-0 -translate-y-2"
+        >
+          <div
+            v-if="sortDropdownOpen"
+            class="absolute left-0 top-full z-50 mt-2 w-full min-w-40 rounded-xl border border-white/10 bg-slate-900/95 py-1 shadow-xl backdrop-blur-xl"
+          >
+            <button
+              v-for="(label, key) in sortLabels"
+              :key="key"
+              type="button"
+              class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-violet-500/20"
+              :class="{ 'bg-violet-500/10 text-violet-300': store.filters.sortBy === key }"
+              @click="handleSortChange(key as SortOption)"
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="store.filters.sortBy === key ? 'bg-violet-400' : 'bg-transparent'"
+              ></span>
+              {{ label }}
+            </button>
+          </div>
+        </Transition>
+      </div>
+
+      <!-- Custom Toggle: Hide Forks -->
+      <div class="ml-auto flex items-center gap-3">
+        <button
+          type="button"
+          class="group flex items-center gap-2 text-sm text-slate-300"
+          @click="store.toggleHideForked()"
+          role="switch"
+          :aria-checked="store.filters.hideForked"
+        >
+          <div
+            class="relative h-6 w-11 rounded-full transition-colors duration-300"
+            :class="store.filters.hideForked ? 'bg-violet-500' : 'bg-slate-700'"
+          >
+            <div
+              class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-all duration-300"
+              :class="store.filters.hideForked ? 'left-[22px]' : 'left-0.5'"
+            ></div>
+          </div>
+          <span>Hide Forks</span>
+        </button>
+      </div>
+
+      <!-- Custom Toggle: Show Archived -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="group flex items-center gap-2 text-sm text-slate-300"
+          @click="store.toggleShowArchived()"
+          role="switch"
+          :aria-checked="store.filters.showArchived"
+        >
+          <div
+            class="relative h-6 w-11 rounded-full transition-colors duration-300"
+            :class="store.filters.showArchived ? 'bg-amber-500' : 'bg-slate-700'"
+          >
+            <div
+              class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-all duration-300"
+              :class="store.filters.showArchived ? 'left-[22px]' : 'left-0.5'"
+            ></div>
+          </div>
+          <span>Show Archived</span>
+        </button>
+      </div>
     </div>
 
     <div v-if="store.loading" class="flex flex-col items-center gap-3 py-10 text-slate-300">

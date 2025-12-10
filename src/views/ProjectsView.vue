@@ -70,11 +70,7 @@ import RepositoryGrid from '../components/RepositoryGrid.vue'
         </div>
       </header>
 
-      <div
-        class="rounded-2xl bg-slate-900/70 ring-1 ring-white/10 shadow-2xl shadow-indigo-900/40 backdrop-blur p-4 sm:p-6 animate-fade-up"
-      >
-        <RepositoryGrid :show-filters="true" />
-      </div>
+      <RepositoryGrid :show-filters="true" />
     </section>
   </main>
 </template>

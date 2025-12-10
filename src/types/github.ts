@@ -64,9 +64,12 @@ export interface GitHubMember {
 
 export type SortOption = 'stars' | 'updated' | 'name'
 export type FilterLanguage = string | null
+export type FilterOwner = string | null
 
 export interface RepositoryFilters {
   language: FilterLanguage
+  owner: FilterOwner
   sortBy: SortOption
   hideForked: boolean
+  showArchived: boolean
 }

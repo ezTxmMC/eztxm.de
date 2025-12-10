@@ -78,7 +78,7 @@ export function useGitHub() {
       }
 
       const data: GitHubRepository[] = await response.json()
-      repositories.value = data.filter((repo) => !repo.archived)
+      repositories.value = data
       saveToCache(CACHE_KEY, repositories.value)
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to fetch repositories'

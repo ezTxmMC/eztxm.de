@@ -145,7 +145,7 @@
           <RouterLink
             v-for="org in organizations"
             :key="org.id"
-            :to="`/organization/${org.login}`"
+            :to="`/org/${org.login}`"
             class="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg shadow-black/30 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-violet-400/50 hover:shadow-violet-500/30"
           >
             <img
