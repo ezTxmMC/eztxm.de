@@ -1,4 +1,41 @@
 {
+    "redirects": [
+        {
+            "source": "/dc",
+            "destination": "https://discord.gg/eztxmmc",
+            "permanent": false
+        },
+        {
+            "source": "/yt",
+            "destination": "https://youtube.com/@eztxmmc",
+            "permanent": false
+        },
+        {
+            "source": "/ttv",
+            "destination": "https://twitch.tv/eztxmmc",
+            "permanent": false
+        },
+        {
+            "source": "/x",
+            "destination": "https://twitter.com/eztxmmc",
+            "permanent": false
+        },
+        {
+            "source": "/bsky",
+            "destination": "https://bsky.app/profile/eztxm.de",
+            "permanent": false
+        },
+        {
+            "source": "/lp",
+            "destination": "https://luckprefix.com",
+            "permanent": false
+        },
+        {
+            "source": "/luckprefix",
+            "destination": "https://luckprefix.com",
+            "permanent": false
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
