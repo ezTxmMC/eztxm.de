@@ -1,0 +1,63 @@
+@theme {
+    /* ── Surfaces ─────────────────────────────────────────── */
+    --color-bg: #020617;
+    --color-surface: #0d1424;
+    --color-surface-raised: #131d35;
+    --color-border: #1e2d47;
+    --color-border-subtle: #162036;
+    --color-surface-bright: #1a2744;
+    --color-surface-bright-raised: #223057;
+    --color-border-bright: #2e4268;
+
+    /* ── Primary — indigo / blue ──────────────────────────── */
+    --color-primary: #6366f1;
+    --color-primary-dim: #4338ca;
+    --color-primary-glow: rgba(99, 102, 241, 0.15);
+    --color-primary-bg: rgba(99, 102, 241, 0.10);
+
+    /* ── Secondary — cyan / teal ─────────────────────────── */
+    --color-secondary: #06b6d4;
+    --color-secondary-dim: #0e7490;
+    --color-secondary-glow: rgba(6, 182, 212, 0.15);
+    --color-secondary-bg: rgba(6, 182, 212, 0.10);
+
+    /* ── Accent — magenta / pink ──────────────────────────── */
+    --color-accent: #ec4899;
+    --color-accent-dim: #be185d;
+    --color-accent-glow: rgba(236, 72, 153, 0.12);
+    --color-accent-bg: rgba(236, 72, 153, 0.10);
+
+    /* ── Supporting — violet / purple ────────────────────── */
+    --color-purple: #a855f7;
+    --color-purple-dim: #7c3aed;
+    --color-purple-glow: rgba(168, 85, 247, 0.10);
+    --color-purple-bg: rgba(168, 85, 247, 0.10);
+
+    /* ── Text ────────────────────────────────────────────── */
+    --color-text: #e2e8f0;
+    --color-text-muted: #94a3b8;
+    --color-text-dim: #64748b;
+
+    /* ── Spacing ─────────────────────────────────────────── */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+
+    /* ── Radii ───────────────────────────────────────────── */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* ── Motion ──────────────────────────────────────────── */
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+}

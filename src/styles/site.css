@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./variables.css";
+
+@layer base {
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'RobotoMono';
+        scrollbar-width: none;
+    }
+
+    body {
+        background:
+            radial-gradient(circle at 20% 20%, var(--color-primary-glow), transparent 40%),
+            radial-gradient(circle at 80% 10%, var(--color-accent-glow),   transparent 35%),
+            radial-gradient(circle at 50% 80%, var(--color-purple-glow),   transparent 45%),
+            var(--color-bg);
+    }
+}
+
+/* ── Scroll-reveal ───────────────────────────────────────── */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+        opacity 0.5s var(--ease-default),
+        transform 0.5s var(--ease-default);
+}
+
+[data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for grid children */
+[data-animate-stagger] > * {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+        opacity 0.5s var(--ease-default),
+        transform 0.5s var(--ease-default);
+}
+
+[data-animate-stagger].is-visible > *:nth-child(1)  { opacity: 1; transform: translateY(0); transition-delay: 0ms;   }
+[data-animate-stagger].is-visible > *:nth-child(2)  { opacity: 1; transform: translateY(0); transition-delay: 75ms;  }
+[data-animate-stagger].is-visible > *:nth-child(3)  { opacity: 1; transform: translateY(0); transition-delay: 150ms; }
+[data-animate-stagger].is-visible > *:nth-child(4)  { opacity: 1; transform: translateY(0); transition-delay: 225ms; }
+[data-animate-stagger].is-visible > *:nth-child(5)  { opacity: 1; transform: translateY(0); transition-delay: 300ms; }
+[data-animate-stagger].is-visible > *:nth-child(6)  { opacity: 1; transform: translateY(0); transition-delay: 375ms; }
+[data-animate-stagger].is-visible > *:nth-child(n+7) { opacity: 1; transform: translateY(0); transition-delay: 450ms; }
+
+/* ── Hero entrance ───────────────────────────────────────── */
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(1.5rem); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+[data-hero] > * {
+    animation: fade-up 0.6s var(--ease-default) both;
+}
+
+[data-hero] > *:nth-child(1) { animation-delay: 100ms; }
+[data-hero] > *:nth-child(2) { animation-delay: 200ms; }
+[data-hero] > *:nth-child(3) { animation-delay: 300ms; }
+[data-hero] > *:nth-child(4) { animation-delay: 400ms; }
+[data-hero] > *:nth-child(5) { animation-delay: 500ms; }

@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+
+const categories = [
+    {
+        label: "Languages",
+        color: "primary",
+        skills: [
+            { icon: "simple-icons:oracle", name: "Java" },
+            { icon: "simple-icons:go", name: "Go" },
+            { icon: "simple-icons:typescript", name: "TypeScript" },
+            { icon: "simple-icons:javascript", name: "JavaScript" },
+            { icon: "simple-icons:crystal", name: "Crystal" },
+        ],
+    },
+    {
+        label: "Frontend",
+        color: "secondary",
+        skills: [
+            { icon: "simple-icons:astro", name: "Astro" },
+            { icon: "simple-icons:vuedotjs", name: "Vue" },
+            { icon: "simple-icons:react", name: "React" },
+            { icon: "simple-icons:tailwindcss", name: "Tailwind" },
+            { icon: "simple-icons:iconify", name: "Iconify" },
+        ],
+    },
+    {
+        label: "Backend",
+        color: "purple",
+        skills: [
+            { icon: "simple-icons:bun", name: "Bun" },
+            { icon: "simple-icons:electron", name: "Electron" },
+            { icon: "simple-icons:mariadb", name: "MariaDB" },
+            { icon: "simple-icons:sqlite", name: "SQLite" },
+            { icon: "simple-icons:toml", name: "TOML" },
+        ],
+    },
+    {
+        label: "DevOps",
+        color: "accent",
+        skills: [
+            { icon: "simple-icons:docker", name: "Docker" },
+            { icon: "simple-icons:linux", name: "Linux" },
+            { icon: "simple-icons:git", name: "Git" },
+            { icon: "simple-icons:nginx", name: "Nginx" },
+            { icon: "simple-icons:proxmox", name: "Proxmox" },
+        ],
+    },
+];
+
+const colorMap: Record<string, { text: string; border: string; bg: string }> = {
+    primary:   { text: "text-primary",   border: "border-primary",   bg: "bg-primary-bg"   },
+    secondary: { text: "text-secondary", border: "border-secondary", bg: "bg-secondary-bg" },
+    purple:    { text: "text-purple",    border: "border-purple",    bg: "bg-purple-bg"    },
+    accent:    { text: "text-accent",    border: "border-accent",    bg: "bg-accent-bg"    },
+};
+---
+
+<section id="skills" class="px-50 py-24 border-t border-t-border">
+    <div data-animate>
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Skills</p>
+        <h2 class="text-4xl font-bold text-text mb-12 leading-tight">
+            Tools of the trade.
+        </h2>
+    </div>
+
+    <div data-animate-stagger class="grid grid-cols-4 gap-lg">
+        {categories.map((cat) => {
+            const c = colorMap[cat.color];
+            return (
+                <div class="flex flex-col gap-sm p-6 rounded-lg border border-border bg-surface-raised">
+                    <p class={`text-xs font-semibold uppercase tracking-widest mb-2 ${c.text}`}>
+                        {cat.label}
+                    </p>
+                    {cat.skills.map((skill) => (
+                        <div class="flex items-center gap-sm py-2 px-3 rounded-md border border-border bg-surface transition-all duration-200 ease-in-out hover:border-border-bright hover:bg-surface-bright">
+                            <Icon name={skill.icon} class={`w-4 h-4 ${c.text}`} />
+                            <span class="text-sm text-text-muted">{skill.name}</span>
+                        </div>
+                    ))}
+                </div>
+            );
+        })}
+    </div>
+</section>

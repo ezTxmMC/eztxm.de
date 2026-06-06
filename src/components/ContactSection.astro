@@ -1,0 +1,74 @@
+---
+import { Icon } from "astro-icon/components";
+
+const channels = [
+    {
+        icon: "lucide:mail",
+        label: "Email",
+        href: "mailto:contact@eztxm.de",
+        color: "primary",
+    },
+    {
+        icon: "simple-icons:discord",
+        label: "Discord",
+        href: "https://discord.com/users/645244181756903426",
+        color: "secondary",
+    },
+    {
+        icon: "simple-icons:bluesky",
+        label: "Bluesky",
+        href: "https://bsky.app/profile/@eztxm.de",
+        color: "accent",
+    },
+];
+
+const colorMap: Record<string, { text: string; border: string; bg: string }> = {
+    primary:   { text: "text-primary",   border: "hover:border-primary",   bg: "hover:bg-primary-bg"   },
+    secondary: { text: "text-secondary", border: "hover:border-secondary", bg: "hover:bg-secondary-bg" },
+    accent:    { text: "text-accent",    border: "hover:border-accent",    bg: "hover:bg-accent-bg"    },
+};
+---
+
+<section id="contact" class="px-50 py-24 border-t border-t-border">
+    <div
+        data-animate
+        class="relative rounded-2xl border border-border bg-surface-raised p-16 overflow-hidden"
+        style="background: radial-gradient(ellipse 60% 80% at 50% 120%, var(--color-primary-glow), transparent)"
+    >
+        <!-- Decorative glow -->
+        <div
+            class="absolute inset-0 pointer-events-none"
+            style="background: radial-gradient(ellipse 40% 40% at 80% 20%, var(--color-accent-glow), transparent)"
+        />
+
+        <div class="relative text-center mb-12">
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Contact</p>
+            <h2 class="text-4xl font-bold text-text mb-4 leading-tight">
+                Let's work together.
+            </h2>
+            <p class="text-text-muted max-w-5xl mx-auto leading-relaxed">
+                Have a project in mind or just want to say hi? Reach out through
+                any of the channels below — I'll get back to you quickly.
+            </p>
+        </div>
+
+        <div data-animate-stagger class="relative flex justify-center gap-lg">
+            {channels.map((ch) => {
+                const c = colorMap[ch.color];
+                return (
+                    <a
+                        href={ch.href}
+                        target={ch.href.startsWith("mailto") ? "_self" : "_blank"}
+                        rel="noopener noreferrer"
+                        class={`flex items-center gap-md px-6 py-4 rounded-lg border border-border bg-surface transition-all duration-200 ease-in-out hover:text-text ${c.border} ${c.bg}`}
+                    >
+                        <Icon name={ch.icon} class={`w-5 h-5 ${c.text}`} />
+                        <div class="flex flex-col">
+                            <span class="text-xs text-text-dim">{ch.label}</span>
+                        </div>
+                    </a>
+                );
+            })}
+        </div>
+    </div>
+</section>

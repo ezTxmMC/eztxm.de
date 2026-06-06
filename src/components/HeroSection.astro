@@ -1,0 +1,68 @@
+---
+import { Icon } from "astro-icon/components";
+
+const socials = [
+    { icon: "simple-icons:github", href: "https://github.com/ezTxmMC", label: "GitHub" },
+    { icon: "simple-icons:youtube", href: "https://youtube.com/@ezTxmMC", label: "YouTube" },
+    { icon: "simple-icons:twitch", href: "https://twitch.tv/eztxmmc", label: "Twitch" },
+    { icon: "simple-icons:bluesky", href: "https://bsky.app/profile/@eztxm.de", label: "Bluesky" },
+];
+---
+
+<section class="relative flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] px-50 text-center overflow-hidden">
+    <!-- Background glows -->
+    <div
+        class="absolute inset-0 pointer-events-none"
+        style="background: radial-gradient(ellipse 70% 50% at 50% -10%, var(--color-primary-glow), transparent)"
+    />
+    <div
+        class="absolute inset-0 pointer-events-none"
+        style="background: radial-gradient(ellipse 40% 30% at 80% 60%, var(--color-accent-glow), transparent)"
+    />
+
+    <!-- Animated content -->
+    <div data-hero class="flex flex-col items-center text-center">
+        <h1 class="text-6xl font-bold text-text mb-4 leading-tight">
+            Hi, I'm <span class="text-primary">Tom</span>
+        </h1>
+
+        <p class="text-xl text-text-muted max-w-5xl mb-10 leading-relaxed">
+            Full-stack developer building modern software solutions. Focused on
+            performance, clean code, and great developer experience.
+        </p>
+
+        <div class="flex items-center gap-md mb-12">
+            <a
+                href="/projects"
+                class="px-6 py-3 bg-primary text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-primary-dim"
+            >
+                View Projects
+            </a>
+            <a
+                href="/#contact"
+                class="px-6 py-3 border border-border-bright bg-surface-bright text-text-muted rounded-md font-medium transition-all duration-200 ease-in-out hover:text-text hover:border-primary"
+            >
+                Contact Me
+            </a>
+        </div>
+
+        <div class="flex items-center gap-sm">
+            {socials.map((s) => (
+                <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    class="p-2 rounded-md text-text-dim border border-border bg-surface-raised transition-all duration-200 ease-in-out hover:text-primary hover:border-primary hover:bg-primary-bg"
+                >
+                    <Icon name={s.icon} class="w-4 h-4" />
+                </a>
+            ))}
+        </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 flex flex-col items-center gap-1 text-text-dim animate-bounce">
+        <Icon name="lucide:chevron-down" class="w-5 h-5" />
+    </div>
+</section>

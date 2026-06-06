@@ -1,0 +1,80 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="Imprint — ezTxmMC" description="Legal imprint for eztxm.de">
+    <section
+        class="relative px-50 pt-20 pb-16 border-b border-b-border overflow-hidden"
+        style="background: radial-gradient(ellipse 60% 80% at 50% -20%, var(--color-primary-glow), transparent)"
+    >
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Legal</p>
+        <h1 class="text-5xl font-bold text-text mb-4 leading-tight">Imprint</h1>
+        <p class="text-text-muted leading-relaxed">Information pursuant to § 5 DDG</p>
+    </section>
+
+    <section class="px-50 py-16 w-full flex flex-col gap-10">
+        <!-- Responsible person -->
+        <div data-animate class="flex flex-col gap-3">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-primary">Responsible</h2>
+            <div class="text-text-muted leading-loose">
+                <p class="text-text font-medium">Tom Handrick</p>
+                <p>Gladiolenweg 30</p>
+                <p>14772 Brandenburg an der Havel</p>
+                <p>Germany</p>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div data-animate class="flex flex-col gap-3">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-primary">Contact</h2>
+            <div class="text-text-muted leading-loose">
+                <p>
+                    Email:
+                    <a href="mailto:contact@eztxm.de" class="text-text hover:text-primary transition-colors duration-200">
+                        contact@eztxm.de
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Content responsibility -->
+        <div data-animate class="flex flex-col gap-3">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-primary">Responsible for Content</h2>
+            <div class="text-text-muted leading-loose">
+                <p>Tom Handrick (address as above)</p>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div data-animate class="flex flex-col gap-3">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-primary">Disclaimer</h2>
+            <div class="flex flex-col gap-4 text-sm text-text-muted leading-relaxed">
+                <div>
+                    <p class="text-text font-medium mb-1">Liability for Content</p>
+                    <p>
+                        The content of this site has been created with the utmost care. However, no guarantee
+                        can be given for the accuracy, completeness, or timeliness of the content. As a service
+                        provider, we are responsible for our own content on these pages in accordance with
+                        general laws pursuant to § 7 para. 1 DDG.
+                    </p>
+                </div>
+                <div>
+                    <p class="text-text font-medium mb-1">Liability for Links</p>
+                    <p>
+                        This website contains links to external third-party websites over whose content we have
+                        no influence. Therefore, we cannot accept any liability for this external content. The
+                        respective provider or operator of the linked pages is always responsible for their content.
+                    </p>
+                </div>
+                <div>
+                    <p class="text-text font-medium mb-1">Copyright</p>
+                    <p>
+                        The content and works created by the site operators on these pages are subject to German
+                        copyright law. Reproduction, editing, distribution, and any kind of use beyond the limits
+                        of copyright law require the written consent of the respective author or creator.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</SiteLayout>
