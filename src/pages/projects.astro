@@ -1,60 +1,63 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { Icon } from "astro-icon/components";
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { Icon } from 'astro-icon/components';
 
 const projects = [
     {
-        name: "Portfolio",
-        description: "Personal portfolio website built with Astro and Tailwind CSS. Showcases projects, skills, and contact info.",
-        tags: ["Astro", "TypeScript", "Tailwind"],
-        status: "active" as const,
-        github: "https://github.com/ezTxmMC/eztxm.de",
-        url: "https://eztxm.de",
-        color: "primary" as const,
+        name: 'Portfolio',
+        description: 'Personal portfolio website built with Astro and Tailwind CSS. Showcases projects, skills, and contact info.',
+        tags: ['Astro', 'TypeScript', 'Tailwind'],
+        status: 'active' as const,
+        github: 'https://github.com/ezTxmMC/eztxm.de',
+        url: 'https://eztxm.de',
+        color: 'primary' as const,
     },
     {
-        name: "BlueNet-Hosting",
-        description: "Hosting service for gamers and developers offering reliable infrastructure without the noise.",
-        tags: ["Infrastructure", "Linux", "Nginx", "Docker"],
-        status: "wip" as const,
-        url: "https://bluenet-hosting.com",
-        color: "secondary" as const,
+        name: 'BlueNet-Hosting',
+        description: 'Hosting service for gamers and developers offering reliable infrastructure without the noise.',
+        tags: ['Infrastructure', 'Linux', 'Nginx', 'Docker'],
+        status: 'wip' as const,
+        url: 'https://bluenet-hosting.com',
+        color: 'secondary' as const,
     },
     {
-        name: "KryoCloud",
-        description: "KryoCloud is a lightweight, extensible cloud management system for Minecraft networks. Start services, manage groups, and extend everything through a clean plugin API — all from one node.",
-        tags: ["Docker", "Linux", "Minecraft"],
-        status: "wip" as const,
-        github: "https://github.com/KryoCloud",
-        url: "https://kryocloud.eu",
-        color: "accent" as const,
+        name: 'KryoCloud',
+        description:
+            'KryoCloud is a lightweight, extensible cloud management system for Minecraft networks. Start services, manage groups, and extend everything through a clean plugin API — all from one node.',
+        tags: ['Docker', 'Linux', 'Minecraft'],
+        status: 'wip' as const,
+        github: 'https://github.com/KryoCloud',
+        url: 'https://kryocloud.eu',
+        color: 'accent' as const,
     },
     {
-        name: "VoltLauncher",
-        description: "A performant, lightweight, simple and functional minecraft launcher for common loaders and modding platforms written in java and vue.",
-        tags: ["Minecraft"],
-        status: "wip" as const,
-        github: "https://github.com/Volt-Launcher",
-        url: "https://volt-launcher.app",
-        color: "primary" as const,
+        name: 'VoltLauncher',
+        description:
+            'A performant, lightweight, simple and functional minecraft launcher for common loaders and modding platforms written in java and vue.',
+        tags: ['Minecraft'],
+        status: 'wip' as const,
+        github: 'https://github.com/Volt-Launcher',
+        url: 'https://volt-launcher.app',
+        color: 'primary' as const,
     },
     {
-        name: "Novus",
-        description: "Modern programming language currently being developed in C++ with the goal of eventually becoming self-hosted (capable of compiling itself), featuring a modern syntax and design.",
-        tags: ["C++", "Programming language", "Lexer", "Parser"],
-        status: "wip" as const,
-        github: "https://github.com/Novus-lang",
-        color: "secondary" as const,
+        name: 'Novus',
+        description:
+            'Modern programming language currently being developed in C++ with the goal of eventually becoming self-hosted (capable of compiling itself), featuring a modern syntax and design.',
+        tags: ['C++', 'Programming language', 'Lexer', 'Parser'],
+        status: 'wip' as const,
+        github: 'https://github.com/Novus-lang',
+        color: 'secondary' as const,
     },
     {
-        name: "LuckPrefix",
-        description: "The luckperms addon for tab- and chat-prefixes in Minecraft on the market.",
-        tags: ["Java", "Minecraft", "Paper"],
-        status: "archived" as const,
-        github: "https://github.com/ezTxmMC/LuckPrefix",
-        url: "https://modrinth.com/plugin/luckprefix",
-        color: "accent" as const,
+        name: 'LuckPrefix',
+        description: 'The luckperms addon for tab- and chat-prefixes in Minecraft on the market.',
+        tags: ['Java', 'Minecraft', 'Paper'],
+        status: 'archived' as const,
+        github: 'https://github.com/ezTxmMC/LuckPrefix',
+        url: 'https://modrinth.com/plugin/luckprefix',
+        color: 'accent' as const,
     },
 ];
 ---
@@ -67,17 +70,13 @@ const projects = [
     >
         <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Work</p>
         <h1 class="text-5xl font-bold text-text mb-4 leading-tight">Projects</h1>
-        <p class="text-text-muted max-w-5xl leading-relaxed">
-            A collection of things I've built — from personal tools to production services.
-        </p>
+        <p class="text-text-muted max-w-5xl leading-relaxed">A collection of things I've built — from personal tools to production services.</p>
     </section>
 
     <!-- Grid -->
     <section class="px-50 py-16">
         <div data-animate-stagger class="grid grid-cols-3 gap-lg">
-            {projects.map((p) => (
-                <ProjectCard {...p} />
-            ))}
+            {projects.map((p) => <ProjectCard {...p} />)}
         </div>
     </section>
 

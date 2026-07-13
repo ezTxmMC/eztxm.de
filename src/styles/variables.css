@@ -13,25 +13,25 @@
     --color-primary: #6366f1;
     --color-primary-dim: #4338ca;
     --color-primary-glow: rgba(99, 102, 241, 0.15);
-    --color-primary-bg: rgba(99, 102, 241, 0.10);
+    --color-primary-bg: rgba(99, 102, 241, 0.1);
 
     /* ── Secondary — cyan / teal ─────────────────────────── */
     --color-secondary: #06b6d4;
     --color-secondary-dim: #0e7490;
     --color-secondary-glow: rgba(6, 182, 212, 0.15);
-    --color-secondary-bg: rgba(6, 182, 212, 0.10);
+    --color-secondary-bg: rgba(6, 182, 212, 0.1);
 
     /* ── Accent — magenta / pink ──────────────────────────── */
     --color-accent: #ec4899;
     --color-accent-dim: #be185d;
     --color-accent-glow: rgba(236, 72, 153, 0.12);
-    --color-accent-bg: rgba(236, 72, 153, 0.10);
+    --color-accent-bg: rgba(236, 72, 153, 0.1);
 
     /* ── Supporting — violet / purple ────────────────────── */
     --color-purple: #a855f7;
     --color-purple-dim: #7c3aed;
-    --color-purple-glow: rgba(168, 85, 247, 0.10);
-    --color-purple-bg: rgba(168, 85, 247, 0.10);
+    --color-purple-glow: rgba(168, 85, 247, 0.1);
+    --color-purple-bg: rgba(168, 85, 247, 0.1);
 
     /* ── Text ────────────────────────────────────────────── */
     --color-text: #e2e8f0;

@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
 class Link {
     constructor(
@@ -18,42 +18,26 @@ class SocialLink {
 }
 
 const socialLinks = [
-    new SocialLink(
-        "simple-icons:github",
-        "https://github.com/ezTxmMC",
-        "GitHub",
-    ),
-    new SocialLink(
-        "simple-icons:youtube",
-        "https://youtube.com/@ezTxmMC",
-        "YouTube",
-    ),
-    new SocialLink(
-        "simple-icons:twitch",
-        "https://twitch.tv/eztxmmc",
-        "Twitch",
-    ),
-    new SocialLink(
-        "simple-icons:bluesky",
-        "https://bsky.app/profile/@eztxm.de",
-        "Bluesky",
-    ),
+    new SocialLink('simple-icons:github', 'https://github.com/ezTxmMC', 'GitHub'),
+    new SocialLink('simple-icons:youtube', 'https://youtube.com/@ezTxmMC', 'YouTube'),
+    new SocialLink('simple-icons:twitch', 'https://twitch.tv/eztxmmc', 'Twitch'),
+    new SocialLink('simple-icons:bluesky', 'https://bsky.app/profile/@eztxm.de', 'Bluesky'),
 ];
 
 const pagesLinks = [
-    new Link("/#about", "About"),
-    new Link("/#skills", "Skills"),
-    new Link("/projects", "Projects"),
-    new Link("/#contact", "Contact"),
+    new Link('/#about', 'About'),
+    new Link('/#skills', 'Skills'),
+    new Link('/projects', 'Projects'),
+    new Link('/#contact', 'Contact'),
 ];
 
 const servicesLinks = [
-    new Link("https://status.eztxm.de", "Status", true),
-    new Link("https://repo.eztxm.de", "Repository", true),
-    new Link("https://bluenet-hosting.com", "Hosting", true),
+    new Link('https://status.eztxm.de', 'Status', true),
+    new Link('https://repo.eztxm.de', 'Repository', true),
+    new Link('https://bluenet-hosting.com', 'Hosting', true),
 ];
 
-const legalLinks = [new Link("/imprint", "Imprint")];
+const legalLinks = [new Link('/imprint', 'Imprint')];
 ---
 
 <footer class="border-t border-t-border/50 backdrop-blur-md" style="background: color-mix(in srgb, var(--color-bg) 70%, transparent)">
@@ -64,9 +48,7 @@ const legalLinks = [new Link("/imprint", "Imprint")];
                 <img src="/logo.jpeg" alt="" class="h-10 rounded-md" />
                 <span class="font-semibold text-text">ezTxmMC</span>
             </div>
-            <p class="text-sm text-text-muted leading-relaxed">
-                Modern software solutions.
-            </p>
+            <p class="text-sm text-text-muted leading-relaxed">Modern software solutions.</p>
             <div class="flex items-center gap-sm mt-2">
                 {
                     socialLinks.map((link) => (
@@ -86,17 +68,10 @@ const legalLinks = [new Link("/imprint", "Imprint")];
 
         <!-- Pages -->
         <div class="flex flex-col gap-xs">
-            <p
-                class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2"
-            >
-                Pages
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2">Pages</p>
             {
                 pagesLinks.map((link) => (
-                    <a
-                        href={link.href}
-                        class="text-sm text-text-muted transition-colors duration-200 ease-in-out hover:text-text w-fit"
-                    >
+                    <a href={link.href} class="text-sm text-text-muted transition-colors duration-200 ease-in-out hover:text-text w-fit">
                         {link.label}
                     </a>
                 ))
@@ -105,11 +80,7 @@ const legalLinks = [new Link("/imprint", "Imprint")];
 
         <!-- Services -->
         <div class="flex flex-col gap-xs">
-            <p
-                class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2"
-            >
-                Services
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2">Services</p>
             {
                 servicesLinks.map((link) => (
                     <a
@@ -126,11 +97,7 @@ const legalLinks = [new Link("/imprint", "Imprint")];
 
         <!-- Legal -->
         <div class="flex flex-col gap-xs">
-            <p
-                class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2"
-            >
-                Legal
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-dim mb-2">Legal</p>
             {
                 legalLinks.map((link) => (
                     <a
@@ -147,9 +114,7 @@ const legalLinks = [new Link("/imprint", "Imprint")];
     </div>
 
     <!-- Bottom bar -->
-    <div
-        class="px-50 py-4 border-t border-t-border/50 flex items-center justify-between"
-    >
+    <div class="px-50 py-4 border-t border-t-border/50 flex items-center justify-between">
         <p class="text-xs text-text-dim">
             &copy; {new Date().getFullYear()} ezTxmMC. All rights reserved.
         </p>

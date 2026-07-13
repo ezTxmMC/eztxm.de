@@ -1,23 +1,26 @@
 {
-  "name": "eztxm.de",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/node": "^10.1.1",
-    "@iconify-json/lucide": "^1.2.111",
-    "@iconify-json/simple-icons": "^1.2.85",
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.3.6",
-    "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.3.0"
-  }
+    "name": "eztxm.de",
+    "type": "module",
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=22.12.0"
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@astrojs/node": "^10.1.1",
+        "@iconify-json/lucide": "^1.2.111",
+        "@iconify-json/simple-icons": "^1.2.85",
+        "@tailwindcss/vite": "^4.3.0",
+        "astro": "^6.3.6",
+        "astro-icon": "^1.1.5",
+        "prettier": "^3.9.5",
+        "prettier-plugin-astro": "^0.14.1",
+        "tailwindcss": "^4.3.0"
+    }
 }

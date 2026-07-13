@@ -1,8 +1,8 @@
 ---
 const stats = [
-    { value: "6+", label: "Years coding" },
-    { value: "10+", label: "Various projects" },
-    { value: "∞", label: "Coffee consumed" },
+    { value: '6+', label: 'Years coding' },
+    { value: '10+', label: 'Various projects' },
+    { value: '∞', label: 'Coffee consumed' },
 ];
 ---
 
@@ -17,26 +17,29 @@ const stats = [
             </h2>
             <div class="flex flex-col gap-md text-text-muted leading-relaxed">
                 <p>
-                    I'm a self-taught full-stack developer with a passion for building
-                    clean, performant web applications. From system architecture to pixel-perfect
-                    UIs, I care deeply about the entire stack.
+                    I'm a self-taught full-stack developer with a passion for building clean, performant web applications. From system architecture to
+                    pixel-perfect UIs, I care deeply about the entire stack.
                 </p>
                 <p>
-                    When I'm not shipping code I stream on Twitch, create content on YouTube,
-                    and run <a href="https://bluenet-hosting.com" target="_blank" class="text-primary hover:underline">BlueNet-Hosting</a> —
-                    a hosting service for gamers and developers who want reliable infrastructure without the noise.
+                    When I'm not shipping code I stream on Twitch, create content on YouTube, and run <a
+                        href="https://bluenet-hosting.com"
+                        target="_blank"
+                        class="text-primary hover:underline">BlueNet-Hosting</a
+                    > — a hosting service for gamers and developers who want reliable infrastructure without the noise.
                 </p>
             </div>
         </div>
 
         <!-- Stats -->
         <div data-animate-stagger class="flex flex-col gap-md min-w-64">
-            {stats.map((stat) => (
-                <div class="p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-1">
-                    <span class="text-4xl font-bold text-primary">{stat.value}</span>
-                    <span class="text-sm text-text-muted">{stat.label}</span>
-                </div>
-            ))}
+            {
+                stats.map((stat) => (
+                    <div class="p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-1">
+                        <span class="text-4xl font-bold text-primary">{stat.value}</span>
+                        <span class="text-sm text-text-muted">{stat.label}</span>
+                    </div>
+                ))
+            }
         </div>
     </div>
 </section>
