@@ -30,7 +30,9 @@ const s = statusMap[status];
 ---
 
 <div
-    class="group relative flex flex-col rounded-lg border border-border bg-surface-raised overflow-hidden transition-all duration-200 ease-in-out hover:border-border-bright hover:bg-surface-bright"
+    data-project-card
+    data-status={status}
+    class="group relative flex flex-col rounded-lg border border-border bg-surface-raised overflow-hidden transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-border-bright hover:bg-surface-bright hover:shadow-lg"
 >
     <!-- Top accent bar -->
     <div class={`h-0.5 w-full ${colorMap[color]}`}></div>

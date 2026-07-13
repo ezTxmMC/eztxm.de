@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 class Link {
     constructor(
         public href: string,
@@ -17,18 +19,17 @@ const links = [
 ---
 
 <header
-    class="sticky top-0 z-50 px-50 w-full h-20 flex items-center border-b border-b-border/50 backdrop-blur-md"
-    style="background: color-mix(in srgb, var(--color-bg) 70%, transparent)"
+    class="fixed top-0 z-50 px-6 md:px-12 lg:px-50 w-full h-20 flex items-center border-b border-b-border/50 backdrop-blur-md"
+    style="background: color-mix(in srgb, var(--color-bg) 50%, transparent)"
 >
     <div class="flex items-center gap-sm cursor-pointer" onclick="window.location.href = '/'">
-        <img src="/logo.jpeg" alt="" class="h-14 rounded-md" />
-
         <div class="flex flex-col">
-            <p class="-mb-1 text-xl font-semibold">ezTxmMC</p>
-            <p class="-mt-1 text-md text-text-muted">Modern software solutions.</p>
+            <p class="-mb-1 text-lg md:text-xl font-semibold">ezTxmMC</p>
+            <p class="-mt-1 text-md text-text-muted hidden sm:block">Modern software solutions.</p>
         </div>
     </div>
-    <div class="flex-1 flex justify-end items-center gap-xl">
+
+    <div class="flex-1 hidden md:flex justify-end items-center gap-xl">
         {
             links.map((link) => (
                 <a
@@ -45,4 +46,74 @@ const links = [
             ))
         }
     </div>
+
+    <button
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        data-menu-toggle
+        class="flex-1 flex md:hidden justify-end items-center text-text-muted transition-colors duration-200 ease-in-out hover:text-text"
+    >
+        <Icon name="lucide:menu" class="w-6 h-6" data-menu-icon-open />
+        <Icon name="lucide:x" class="w-6 h-6 hidden" data-menu-icon-close />
+    </button>
 </header>
+
+<div
+    data-mobile-menu
+    class="fixed inset-x-0 top-20 z-40 hidden md:hidden flex-col gap-md px-6 py-6 border-b border-b-border/50 backdrop-blur-md"
+    style="background: color-mix(in srgb, var(--color-bg) 92%, transparent)"
+>
+    {
+        links.map((link) => (
+            <a
+                class={
+                    link.button
+                        ? 'px-4 py-2 bg-surface-bright border border-border-bright rounded-md text-text-muted transition-all duration-200 ease-in-out hover:text-text hover:border-accent w-fit'
+                        : 'text-text-muted transition-colors duration-200 ease-in-out hover:text-text'
+                }
+                href={link.href}
+                target={link.external ? '_blank' : '_self'}
+            >
+                {link.label}
+            </a>
+        ))
+    }
+</div>
+
+<script>
+    function initMobileMenu() {
+        const toggle = document.querySelector('[data-menu-toggle]');
+        const menu = document.querySelector('[data-mobile-menu]');
+        const iconOpen = document.querySelector('[data-menu-icon-open]');
+        const iconClose = document.querySelector('[data-menu-icon-close]');
+        if (!toggle || !menu || toggle.hasAttribute('data-menu-init')) return;
+        toggle.setAttribute('data-menu-init', 'true');
+
+        const closeMenu = () => {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+            toggle.setAttribute('aria-expanded', 'false');
+            iconOpen?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+        };
+
+        toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('flex');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+                toggle.setAttribute('aria-expanded', 'true');
+                iconOpen?.classList.add('hidden');
+                iconClose?.classList.remove('hidden');
+            }
+        });
+
+        menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+    }
+
+    initMobileMenu();
+    document.addEventListener('astro:page-load', initMobileMenu);
+</script>

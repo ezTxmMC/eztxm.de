@@ -11,6 +11,7 @@
         box-sizing: border-box;
         font-family: 'RobotoMono';
         scrollbar-width: none;
+        scroll-behavior: smooth;
     }
 
     body {
@@ -22,62 +23,64 @@
 }
 
 /* ── Scroll-reveal ───────────────────────────────────────── */
-[data-animate] {
-    opacity: 0;
-    transform: translateY(1.5rem);
-    transition:
-        opacity 0.5s var(--ease-default),
-        transform 0.5s var(--ease-default);
-}
+@layer components {
+    [data-animate] {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition:
+            opacity 0.5s var(--ease-default),
+            transform 0.5s var(--ease-default);
+    }
 
-[data-animate].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+    [data-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-/* Stagger delays for grid children */
-[data-animate-stagger] > * {
-    opacity: 0;
-    transform: translateY(1.5rem);
-    transition:
-        opacity 0.5s var(--ease-default),
-        transform 0.5s var(--ease-default);
-}
+    /* Stagger delays for grid children */
+    [data-animate-stagger] > * {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition:
+            opacity 0.5s var(--ease-default),
+            transform 0.5s var(--ease-default);
+    }
 
-[data-animate-stagger].is-visible > *:nth-child(1) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(2) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 75ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(3) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 150ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(4) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 225ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(5) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 300ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(6) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 375ms;
-}
-[data-animate-stagger].is-visible > *:nth-child(n + 7) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 450ms;
+    [data-animate-stagger].is-visible > *:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 75ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 150ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 225ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(5) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 300ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(6) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 375ms;
+    }
+    [data-animate-stagger].is-visible > *:nth-child(n + 7) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 450ms;
+    }
 }
 
 /* ── Hero entrance ───────────────────────────────────────── */

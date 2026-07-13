@@ -15,7 +15,10 @@
     "dependencies": {
         "@astrojs/node": "^10.1.1",
         "@iconify-json/lucide": "^1.2.111",
+        "@iconify-json/ri": "^1.2.10",
+        "@iconify-json/si": "^1.2.17",
         "@iconify-json/simple-icons": "^1.2.85",
+        "@iconify-json/streamline-logos": "^1.2.0",
         "@tailwindcss/vite": "^4.3.0",
         "astro": "^6.3.6",
         "astro-icon": "^1.1.5",

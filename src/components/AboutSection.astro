@@ -6,35 +6,35 @@ const stats = [
 ];
 ---
 
-<section id="about" class="px-50 py-24 border-t border-t-border">
-    <div class="flex items-start gap-4xl">
+<section id="about" class="px-6 md:px-12 lg:px-50 py-16 md:py-24 border-t border-t-border">
+    <div class="flex flex-col md:flex-row items-start gap-xl md:gap-4xl">
         <!-- Text -->
         <div data-animate class="flex-1">
             <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">About</p>
-            <h2 class="text-4xl font-bold text-text mb-6 leading-tight">
-                Building software that<br />
-                <span class="text-text-muted">actually matters.</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-text mb-6 leading-tight">
+                Fullstack development<br />
+                <span class="text-text-muted">meets solid infrastructure.</span>
             </h2>
             <div class="flex flex-col gap-md text-text-muted leading-relaxed">
                 <p>
-                    I'm a self-taught full-stack developer with a passion for building clean, performant web applications. From system architecture to
-                    pixel-perfect UIs, I care deeply about the entire stack.
+                    I'm a fullstack developer and infrastructure engineer based in Germany, designing and building scalable applications across web,
+                    mobile, and desktop platforms. My work spans full-stack product development, cloud infrastructure, and self-hosted server
+                    environments, always with a focus on clean architecture and reliable systems.
                 </p>
                 <p>
-                    When I'm not shipping code I stream on Twitch, create content on YouTube, and run <a
-                        href="https://bluenet-hosting.com"
-                        target="_blank"
-                        class="text-primary hover:underline">BlueNet-Hosting</a
-                    > — a hosting service for gamers and developers who want reliable infrastructure without the noise.
+                    Alongside client work, I run <a href="https://bluenet-hosting.com" target="_blank" class="text-primary hover:underline"
+                        >BlueNet-Hosting</a
+                    > — a hosting service for gamers and developers who want reliable infrastructure without the noise. I'm currently on the lookout
+                    for my next big project, and always open to collaborations and open-source contributions.
                 </p>
             </div>
         </div>
 
         <!-- Stats -->
-        <div data-animate-stagger class="flex flex-col gap-md min-w-64">
+        <div data-animate-stagger class="flex flex-row md:flex-col gap-md w-full md:w-auto md:min-w-64">
             {
                 stats.map((stat) => (
-                    <div class="p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-1">
+                    <div class="flex-1 min-w-0 p-4 sm:p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-1">
                         <span class="text-4xl font-bold text-primary">{stat.value}</span>
                         <span class="text-sm text-text-muted">{stat.label}</span>
                     </div>
